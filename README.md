@@ -10,11 +10,10 @@ This project analyzes **Brent crude oil prices** to understand their relationshi
 ✅ Explore **OPEC policies, geopolitical risks, and renewable energy impacts**.  
 ✅ Deploy **interactive dashboards** for real-time analysis.  
 
----
 
 ## **📁 Repository Structure**  
 ```
-/brent-oil-analysis
+/Change-point-analysis-and-statistical-modelling-of-time-series-data
 │── data/                  # Raw & processed datasets
 │── notebooks/             # Jupyter Notebooks for EDA & modeling
 │── src/                   # Python scripts for data processing & model training
@@ -28,8 +27,8 @@ This project analyzes **Brent crude oil prices** to understand their relationshi
 
 ## **📊 Data Sources**  
 The analysis incorporates:  
-📌 **Brent Crude Oil Prices** (1987–2022)
-📌 **Macroeconomic Indicators** (GDP, inflation, exchange rates) – [FRED]
+📌 **Brent Crude Oil Prices** (1987–2022)  
+📌 **Macroeconomic Indicators** (GDP, inflation, exchange rates) – [FRED]  
 
 ## **📈 Methodology**  
 
