@@ -2,10 +2,13 @@ import requests
 import pandas as pd
 import yfinance as yf
 import time
+from dotenv import load_dotenv
 
-# Define API Keys
-EIA_API_KEY = "BNuYfzqMQUTev6m8Q9QvSsJ1vBOaC2kDiHmcVBu8"
-FRED_API_KEY = "2138ba7c252656b8a9ca85c75ce99dda"
+# Load environment variables once
+load_dotenv('.env')
+EIA_API_KEY = os.getenv('EIA_API_KEY')
+FRED_API_KEY = os.getenv('FRED_API_KEY')
+
 WORLD_BANK_URL = "http://api.worldbank.org/v2/country/all/indicator/"
 
 # Function to fetch Natural Gas Prices from EIA
