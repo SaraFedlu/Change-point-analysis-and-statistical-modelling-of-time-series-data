@@ -2,10 +2,11 @@ import requests
 import pandas as pd
 import yfinance as yf
 import time
+import os
 from dotenv import load_dotenv
 
 # Load environment variables once
-load_dotenv('.env')
+load_dotenv('scripts/.env')
 EIA_API_KEY = os.getenv('EIA_API_KEY')
 FRED_API_KEY = os.getenv('FRED_API_KEY')
 
@@ -86,6 +87,16 @@ print("Fetching macroeconomic indicators...")
 gdp_data = fetch_world_bank_data("NY.GDP.MKTP.CD", "GDP")
 inflation_data = fetch_world_bank_data("FP.CPI.TOTL.ZG", "Inflation")
 interest_rate_data = fetch_fred_data("FEDFUNDS", "Interest Rate")
+
+# Remove duplicate dates by averaging values
+gdp_data = gdp_data.groupby("Date").mean().reset_index()
+inflation_data = inflation_data.groupby("Date").mean().reset_index()
+interest_rate_data = interest_rate_data.drop(columns=["realtime_start", "realtime_end"]).groupby("Date").mean().reset_index()
+
+# Forward-fill missing values before merging to avoid excessive NaNs
+gdp_data = gdp_data.set_index("Date").resample("D").ffill().reset_index()
+inflation_data = inflation_data.set_index("Date").resample("D").ffill().reset_index()
+interest_rate_data = interest_rate_data.set_index("Date").resample("D").ffill().reset_index()
 
 # Merge All Data
 print("Merging datasets...")
